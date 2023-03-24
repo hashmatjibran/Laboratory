@@ -1,21 +1,50 @@
+// using express
 const express = require('express');
 
+// using Mongoose
 const mongoose = require('mongoose');
 
+// using Configuration
+const config =require('./Config/config')
+
+// requiring BodyParser
 const bodyParser = require('body-parser');
+
+// requiring Cookie parser
+const cookieParser = require('cookie-parser');
+
+// using Port
+const PORT = 8000;
+
+// requiring the express layouts
+const expressLayouts = require('express-ejs-layouts');
 
 const app = express();
 
-const PORT = 8000;
-const router = express.Router();
+// using Assets
+app.use(express.static('./Assets'));
 
-app.use(router);
-app.use(bodyParser.urlencoded({extended:true}));
+// using layouts
+app.use(expressLayouts);
+// extracting styles and sripts 
+app.set('layout extractStyles',true);
+app.set('layout extractScripts',true);
 
+// using body parser to parse request data
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
+// using cookie parser
+app.use(cookieParser());
+
+// using Routes i.e redirecting to the routes Directory and search in there the file provided
+app.use('/',require('./Routes/web'));
+
+// Setting up The Views ans the View Engine
 app.set('view engine','ejs');
 app.set('views','./ Views');
+
+// listen on port specified
 app.listen(PORT,(err)=>{
     if(err)
         {
@@ -23,9 +52,4 @@ app.listen(PORT,(err)=>{
         }
 });
 
-
-router.get('/', function (req, res, next) {
-    console.log("User Router Working");
-    res.end();
-});
  

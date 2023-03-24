@@ -1,0 +1,32 @@
+
+<link rel="stylesheet" href="/Css/signup.css">
+
+    <form action="/signUp" method="post" class="signUpForm">
+        <div class="formChildren">
+            <label for="name" class="nameLabel">Name: </label>
+        <input class="nameInput" type="text" name="name" id="name"  required>
+        </div>
+        
+        <div class="formChildren">
+            <label for="email" class="emailLabel">Email: </label>
+        <input class="emailInput" type="email" name="email" id="email" required >
+        </div>
+        
+        <div class="formChildren">
+          <label for="password" class="passwordLabel">Password:</label>
+        <input class="passwordInput" type="password" name="password" id="password"  minlength="6" required>  
+        </div>
+        
+        <div class="formChildren">
+           <label for="confirmPassword" class="CpasswordLabel">Confirm Password:</label>
+        <input class="CpasswordInput" type="password" name="confirmPassword" id="confirmPassword"  minlength="6" required>
+        </div>
+        
+        <div class="formChildren">
+           <label for="age" class="ageLabel">D.O.B:</label>
+        <input class="ageInput" type="date" name="age" id="age" required> 
+        </div>
+        
+
+        <input class="submitInput" type="submit" value="Sign Up">
+    </form>
