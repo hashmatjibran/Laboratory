@@ -7,6 +7,7 @@ const router = express.Router();
 const controller = require('../Controller/userController');
 
 router.get('/',(request , response)=>{
+    response.cookie('User_Id','');
     return response.render('signIn');
 });
 router.post('/',controller.signIn);

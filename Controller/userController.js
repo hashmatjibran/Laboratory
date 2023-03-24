@@ -41,16 +41,17 @@ module.exports.signUp = async function (request , response) {
 
 module.exports.signIn = async function (request , response) {
     try {
-
+        response.cookie('User_Id','');
        await User.findOne({email:request.body.email})
        .then((result) => {
             if(result == null || result == undefined)
             {
-                return response.redirect(404,"back");
+                return response.end(`No Account with email ${request.body.email} is Found!`);
             }
             if(result.password == request.body.password)
             {
-                return response.render('profile',{'name':result.name,'email':result.email});
+                response.cookie('User_Id',result.id);
+                return response.redirect('/profile');
             }
             else{
                 return response.end(`Incorrect Email/Password`);
@@ -69,3 +70,34 @@ module.exports.signIn = async function (request , response) {
     }
     
 }
+
+module.exports.profile = async function (request , response) {
+    console.log(request.cookies.User_Id)
+   try{
+     if(request.cookies.User_Id != '' && request.cookies.User_Id != undefined)
+    {
+        
+            await User.findById({_id:request.cookies.User_Id})
+        .then((result) => {
+            
+            return response.render('profile',{
+                'name':result.name,
+                'email':result.email
+            });
+        }).catch((err) => {
+            console.log(`inside error err:${err}`);
+            return response.redirect('/signIn');
+        });
+
+        
+
+        
+    }
+    else{
+        return response.redirect('/signIn');
+    }
+}
+        catch(err){
+            console.log(`Inside err try catch ${err}`);
+        }
+  }

@@ -1,9 +1,12 @@
 const express = require('express');
  const router = express.Router();
 
+
+//  using controller
+const controller = require('../Controller/userController');
+
+
  router.get('/',(request , response) => {
-  console.log(request.cookies);
-  response.cookie('User_Id','jibran');
    return response.render('signIn');
  });
 
@@ -12,5 +15,11 @@ const express = require('express');
 
  router.use('/signIn',require('./signIn'))
 
+ router.get('/profile',controller.profile);
 
+
+ router.get('/signOut',(request , response)=>{
+    response.cookie('User_Id','');
+    return response.redirect('/');
+ });
  module.exports = router;
