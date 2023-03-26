@@ -10,6 +10,10 @@ const config =require('./Config/config')
 // require express session
 const session = require('express-session');
 
+//require MongoStore
+const MongoStore = require('connect-mongo') 
+
+
 // using passport
 const passport = require('passport');
 
@@ -28,6 +32,7 @@ const PORT = 8000;
 
 // requiring the express layouts
 const expressLayouts = require('express-ejs-layouts');
+const db = require('./Config/config');
 
 const app = express();
 
@@ -56,7 +61,16 @@ app.use(session({
     resave:false,
     cookie:{
         maxAge:(1000 * 60 *100)
+    },
+    store:new MongoStore(
+        {
+          mongoUrl:'mongodb://localhost/Auth',
+            autoRemove:'disabled'
+    },
+    function(err){
+        console.log(err || "connected successfully");
     }
+    )
 }));
 
 app.use(passport.initialize());
