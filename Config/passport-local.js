@@ -91,5 +91,15 @@ passport.isAuthenticatedUser = function (request , response , next) {
  }
 
 
+ passport.showSignOnPages =  function (request , response , next) { 
+    if(request.isAuthenticated())
+    {
+        console.log(request);
+        return null;
+    }
+        return next();
+  }
+
+
 // export the passport
 module.exports = passport;

@@ -7,7 +7,7 @@ const passport = require('passport');
  });
 
  router.get('/profile',passport.checkAuthentication,(request , response)=>{
-    return response.render('profile',{'name':'jibby','email':'aa.vom'});
+    return response.render('profile');
  });
 
  router.use('/signUp',require('./signUp'));

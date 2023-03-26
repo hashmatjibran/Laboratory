@@ -3,6 +3,11 @@ const User = require('../Models/userSchema');
 module.exports.signUp = async function (request , response) {
     try {
 
+        // if(request.isAuthenticated())
+        // {
+        //    return response.redirect('/profile');
+        // }
+
         // password check whether confirm password and password are equall
         if(request.body.password != request.body.confirmPassword)
         {
@@ -41,6 +46,10 @@ module.exports.signUp = async function (request , response) {
 
 module.exports.signIn = async function (request , response) {
     try {
+        // if(request.isAuthenticated())
+        // {
+        //    return response.redirect('/profile');
+        // }
 
     //    await User.findOne({email:request.body.email})
     //    .then((result) => {
