@@ -42,24 +42,24 @@ module.exports.signUp = async function (request , response) {
 module.exports.signIn = async function (request , response) {
     try {
 
-       await User.findOne({email:request.body.email})
-       .then((result) => {
-            if(result == null || result == undefined)
-            {
-                return response.redirect(404,"back");
-            }
-            if(result.password == request.body.password)
-            {
-                return response.render('profile',{'name':result.name,'email':result.email});
-            }
-            else{
-                return response.end(`Incorrect Email/Password`);
-            }
+    //    await User.findOne({email:request.body.email})
+    //    .then((result) => {
+    //         if(result == null || result == undefined)
+    //         {
+    //             return response.redirect(404,"back");
+    //         }
+    //         if(result.password == request.body.password)
+    //         {
+                return response.redirect('/profile');
+    //         }
+    //         else{
+    //             return response.end(`Incorrect Email/Password`);
+    //         }
 
 
-       }).catch((err) => {
-             console.log(`error in then catch ${err}`);
-       });
+    //    }).catch((err) => {
+    //          console.log(`error in then catch ${err}`);
+    //    });
 
 
 

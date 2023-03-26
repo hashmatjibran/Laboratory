@@ -1,5 +1,6 @@
 const express = require('express');
-
+// using passport
+const passport = require('passport');
 // creating a Router
 const router = express.Router();
 
@@ -9,7 +10,14 @@ const controller = require('../Controller/userController');
 router.get('/',(request , response)=>{
     return response.render('signIn');
 });
-router.post('/',controller.signIn);
+
+
+
+router.post('/',passport.authenticate(
+    'local',
+    {failureRedirect:'/signIn'}
+),
+controller.signIn);
 
 
 
