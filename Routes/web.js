@@ -14,5 +14,5 @@ const passport = require('passport');
 
  router.use('/signIn',require('./signIn'))
 
-
+router.use('/signOut',require('./signOut'));
  module.exports = router;
