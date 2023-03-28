@@ -13,7 +13,6 @@ const session = require('express-session');
 //require MongoStore
 const MongoStore = require('connect-mongo') 
 
-
 // using passport
 const passport = require('passport');
 
@@ -36,6 +35,9 @@ const db = require('./Config/config');
 
 const app = express();
 
+// reqiring Sass/Scss
+const SassMiddleware = require('node-sass-middleware');
+
 // using Assets
 app.use(express.static('./Assets'));
 
@@ -50,35 +52,43 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 // using cookie parser
-app.use(cookieParser());
+app.use(cookieParser()); //used to parse cookies 
+
+// use Sass MiddleWare to convert Sass /Scss into css
+app.use(SassMiddleware({
+    src:'./Assets/Sass', //the source folder wehre scss / Sass files are present
+    dest:'./Assets/Css', //the folder where where compiled css files should be moved or stored
+    debug:false, //used for showing the debug information
+    outputStyle:'compact', //the style for showing the 
+    prefix:'/Css'//prefix is found in the link tag like :- <link rel="stylesheets" href="prefix/style.css"/>
+
+}));
 
 // using passport and cookie session
-
 app.use(session({
-    name:'Laboratory',
-    secret:'jibby',
-    saveUninitialized:false,
-    resave:false,
-    cookie:{
-        maxAge:(1000 * 60 *100)
+    name:'Laboratory', //name of the cookie
+    secret:'jibby', //the secret key for the cookie it can also be crypto
+    saveUninitialized:false, //dont save this cookie in db for a not signed in user
+    resave:false,   //don't save again and again the same cookie
+    cookie:{    
+        maxAge:(1000 * 60 *100) //the age for the cookie to expire it is in milli secs
     },
-    store:new MongoStore(
+    store:new MongoStore( //creating the database link were the cookie is to be stored
         {
-          mongoUrl:'mongodb://localhost/Auth',
-            autoRemove:'disabled'
+          mongoUrl:'mongodb://localhost/Auth', //provide the url ofthe db
+            autoRemove:'disabled' //dont remove the cookie / session from the db automatically
     },
-    function(err){
+    function(err){ //A call back function in case an error is thrown
         console.log(err || "connected successfully");
     }
     )
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize()); //initialize the passport
 
-app.use(passport.isAuthenticatedUser);
+app.use(passport.session()); //use the session in the express app
 
-
+app.use(passport.isAuthenticatedUser); //check whether the user is authenticated
 
 // using Routes i.e redirecting to the routes Directory and search in there the file provided
 app.use('/',require('./Routes/web'));
@@ -91,7 +101,7 @@ app.set('views','./ Views');
 app.listen(PORT,(err)=>{
     if(err)
         {
-        console.log(`Error in running the server Error: ${err}`);
+            console.log(`Error in running the server Error: ${err}`);
         }
 });
 
