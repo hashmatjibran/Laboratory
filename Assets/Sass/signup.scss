@@ -1,12 +1,13 @@
 :root{
     --text-color: rgba(0, 0, 0, 0.7);
+
+
+
 }
 
 
 body{
     color: white;
-}
-
 .signUpForm{
     display: flex;
     flex-direction: column;
@@ -18,33 +19,39 @@ body{
     padding: 1rem;
     border-radius: 4rem 0 4rem;
 
+    .formChildren{
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        width: 100%;
+        display: flex;
+    
+    
+    }
+    .formChildren > label{
+        color: var(--text-color);
+        font-family: 'Courier New', Courier, monospace;
+    }
+    input{
+        outline: none;
+        border: none;
+        background-color: rgba(232, 223, 223, 0.7);
+        flex-grow: 1;
+        border-radius: 1rem;
+        padding-left: 1rem;
+    }
+    .submitInput{
+        color: whitesmoke;
+        background-color: skyblue;
+        padding: 0;
+        width: fit-content;
+        padding: 1rem;
+        font-size: larger;
+    }
+
 }
-.formChildren{
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    width: 100%;
-    display: flex;
+
+}
 
 
-}
 
-.formChildren > label{
-    color: var(--text-color);
-    font-family: 'Courier New', Courier, monospace;
-}
-input{
-    outline: none;
-    border: none;
-    background-color: rgba(232, 223, 223, 0.7);
-    flex-grow: 1;
-    border-radius: 1rem;
-    padding-left: 1rem;
-}
-.submitInput{
-    color: whitesmoke;
-    background-color: skyblue;
-    padding: 0;
-    width: fit-content;
-    padding: 1rem;
-    font-size: larger;
-}
+

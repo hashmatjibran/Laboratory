@@ -2,3 +2,39 @@ body {
   color: white;
   background-color: black;
 }
+
+body #header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: green;
+  font-family: monospace;
+}
+
+body #header div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  width: 20%;
+}
+
+body #header div button:hover {
+  transform: scale(1.2);
+  background-color: skyblue;
+  border-radius: 70px;
+}
+
+body #header div button {
+  outline: none;
+  background: inherit;
+  width: 40%;
+  border: none;
+}
+
+body #header div button a {
+  display: inline-block;
+  color: whitesmoke;
+  text-decoration: none;
+  width: 100%;
+}

@@ -9,11 +9,40 @@
     <%-style%>
 </head>
 <body>
-    <h1>Jibby Lab's
+    <h1 id="header">
+        Jibby Lab's
+        
+        <% if(locals.user){ %>
+            <div>
+                <button id="logOut" class="logOut">
+                    <a href="/signOut">
+                     Logout <i class="fa-solid fa-person-walking-arrow-right"></i>
+                </a>
+            </button>
+        </div>
+        <%}else{%>
+            <div>
+                <button id="logIn" class="logIn">
+                 <a href="/signIn">   
+                     Sign in <i class="fa-solid fa-user"></i>
+                    </a>
+                </button>
+            
+            
+                <button id="signUp" class="signUp">
+                 <a href="/signUp">Sign up <i class="fa-solid fa-square-plus"></i>
+
+                 </a> 
+                </button>
+            </div>
+                
+            
+            <%}%>
     </h1>
 
     <%-body%>
     
     <%-script%>
+    <script src="https://kit.fontawesome.com/7d7d520dab.js" crossorigin="anonymous"></script>
 </body>
 </html>

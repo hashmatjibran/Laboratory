@@ -1,4 +1,45 @@
+$heading-color:green;
+$heading-font:monospace;
+
 body{
     color: white;
     background-color: black;
+    #header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $heading-color;
+        font-family: $heading-font;
+
+        div{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            height: 100%;
+            width: 20%;
+
+           
+            button:hover{
+                transform: scale(1.2);
+                background-color: skyblue;
+                border-radius: 70px;
+            }
+
+             button
+                {
+                    outline: none;
+                    background: inherit;
+                    width: 40%;
+                    border: none;
+                    a{
+                        display: inline-block;
+                        color: whitesmoke;
+                        text-decoration: none;
+                        width: 100%;
+                    }
+                    
+                }
+           
+        }
+    }
 }

@@ -58,8 +58,8 @@ app.use(cookieParser()); //used to parse cookies
 app.use(SassMiddleware({
     src:'./Assets/Sass', //the source folder wehre scss / Sass files are present
     dest:'./Assets/Css', //the folder where where compiled css files should be moved or stored
-    debug:false, //used for showing the debug information
-    outputStyle:'compact', //the style for showing the 
+    debug:true, //used for showing the debug information
+    outputStyle:'expanded', //the style for showing the 
     prefix:'/Css'//prefix is found in the link tag like :- <link rel="stylesheets" href="prefix/style.css"/>
 
 }));
