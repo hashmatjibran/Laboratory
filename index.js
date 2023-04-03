@@ -31,7 +31,6 @@ const PORT = 8000;
 
 // requiring the express layouts
 const expressLayouts = require('express-ejs-layouts');
-const db = require('./Config/config');
 
 const app = express();
 
