@@ -1,0 +1,17 @@
+<H1>Posts</H1>
+<div id="posts">
+<% for(post of result){%>
+
+<li>
+    <p>
+      <%= post.posts%>
+      <br>
+    <small>
+        <%= post.user.name%>
+    </small>  
+    </p>
+</li>
+
+
+<%}%>
+</div>

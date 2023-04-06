@@ -65,10 +65,10 @@ app.use(SassMiddleware({
 
 // using passport and cookie session
 app.use(session({
-    name:'Laboratory', //name of the cookie
-    secret:'jibby', //the secret key for the cookie it can also be crypto
-    saveUninitialized:false, //dont save this cookie in db for a not signed in user
-    resave:false,   //don't save again and again the same cookie
+    name:'Laboratory', //name of the session
+    secret:'jibby', //the secret key for the session it can also be crypto
+    saveUninitialized:false, //dont save this session in db for a not signed in user
+    resave:false,   //don't save again and again the same session
     cookie:{    
         maxAge:(1000 * 60 *100) //the age for the cookie to expire it is in milli secs
     },

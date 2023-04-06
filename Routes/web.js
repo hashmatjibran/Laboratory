@@ -15,4 +15,6 @@ const passport = require('passport');
  router.use('/signIn',require('./signIn'))
 
 router.use('/signOut',require('./signOut'));
+
+router.use('/post',require('./posts'));
  module.exports = router;
