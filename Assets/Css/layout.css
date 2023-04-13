@@ -11,6 +11,11 @@ body #header {
   font-family: monospace;
 }
 
+body #header .cardHeading {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
 body #header div {
   display: flex;
   align-items: center;

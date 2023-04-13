@@ -8,7 +8,7 @@ const LocalStrategy = require('passport-local');
 const User = require('../Models/userSchema');
 
 // using the passport Local Strategy
-passport.use(new LocalStrategy(
+passport.use('local',new LocalStrategy(
     
     {
         usernameField:'email'
@@ -16,7 +16,7 @@ passport.use(new LocalStrategy(
 
    async function (email,password,done) { 
 
-        // find a user a try to establish the identity
+        // find a user and try to establish the identity
        await User.findOne({email:email})
         .then((result) => {
 

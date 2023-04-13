@@ -18,10 +18,7 @@ router.get('/',(request , response)=>{
 
 
 
-router.post('/',passport.authenticate(
-    'local',
-    {failureRedirect:'/signIn'}
-),
+router.post('/',passport.authenticate('local',{ failureRedirect:'/signIn' , failureMessage:true }),
 controller.signIn);
 
 

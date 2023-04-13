@@ -2,8 +2,8 @@ const express = require('express');
 const passport = require('passport');
  const router = express.Router();
 
- router.get('/',(request , response) => {
-   return response.render('signIn');
+ router.get('/',passport.checkAuthentication,(request , response) => {
+  return response.render('profile');
  });
 
  router.get('/profile',passport.checkAuthentication,(request , response)=>{

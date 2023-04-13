@@ -11,6 +11,11 @@ body{
         background-color: $heading-color;
         font-family: $heading-font;
 
+        .cardHeading{
+            color: whitesmoke;
+                        text-decoration: none;
+        }
+
         div{
             display: flex;
             align-items: center;

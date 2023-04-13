@@ -85,7 +85,7 @@ app.use(session({
 
 app.use(passport.initialize()); //initialize the passport
 
-app.use(passport.session()); //use the session in the express app
+app.use(passport.session()); //this line of code authenticates the session
 
 app.use(passport.isAuthenticatedUser); //check whether the user is authenticated
 

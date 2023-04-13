@@ -10,9 +10,19 @@
 </head>
 <body>
     <h1 id="header">
-        Jibby Lab's
         
         <% if(locals.user){ %>
+            <a class="cardHeading" href="/profile">Jibby Lab's</a> 
+            <div>
+                <button id="MyPosts" class="MyPosts">
+                    <a href="/post/myposts">
+                     My Posts <i class="fa-solid fa-envelopes-bulk"></i>
+                     
+                </a>
+            </button>
+        </div>
+
+
             <div>
                 <button id="logOut" class="logOut">
                     <a href="/signOut">
@@ -23,6 +33,7 @@
             <%= user.name%>
         </div>
         <%}else{%>
+            <a class="cardHeading" href="/">Jibby Lab's</a> 
             <div>
                 <button id="logIn" class="logIn">
                  <a href="/signIn">   
