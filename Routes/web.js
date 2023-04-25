@@ -17,4 +17,7 @@ const passport = require('passport');
 router.use('/signOut',require('./signOut'));
 
 router.use('/post',require('./posts'));
+
+router.use('/comment',require('./comments'));
+
  module.exports = router;

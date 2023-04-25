@@ -17,6 +17,7 @@ passport.use('local',new LocalStrategy(
    async function (email,password,done) { 
 
         // find a user and try to establish the identity
+
        await User.findOne({email:email})
         .then((result) => {
 
@@ -53,6 +54,8 @@ passport.serializeUser(function (user,done) {
 // deserializing means taking value out from the cookie that belongs to a particular user
 
 passport.deserializeUser(function (id,done) { 
+
+    
     User.findById(id)
     .then((result) => {
         if(result != null )
