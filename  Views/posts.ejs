@@ -14,9 +14,18 @@
       
 
     <small>
-        <%= post.user.name%>
+      Posted By:-  <%= post.user.name%>
     </small>  
     </p>
+    <% for(comment of post.comments){%>
+      <li>
+        <%=comment.comment%>
+        <br>
+        commented by :- <%= comment.user.name%>
+      </li>
+      
+      
+      <% } %>
 </li>
 
 

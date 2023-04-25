@@ -16,7 +16,15 @@ module.exports.showPosts = async (request , response)=>{
   
     // populating only my posts
     posts.find().populate('user')
+    .populate({
+        path:'comments',
+        populate:{
+            path:'user'
+        }
+
+    })
     .then((result) => {
+        console.log(result[0].comments);
         return response.render('posts',{'result':result});
     }).catch((err) => {
         console.log(`error found  : ${err}`);
