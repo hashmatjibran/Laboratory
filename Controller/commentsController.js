@@ -37,3 +37,48 @@ module.exports.createComment = function(request , response)
     });
     
 }
+
+// delete a comment
+
+module.exports.deleteComment = (request , response)=>{
+    
+   
+
+    comment.findById(request.params.id)
+    .then((result) => {
+        // if found check for authorization to delete the comment
+        
+        if(request.user.id == result.user )
+        {
+            // when the user matched delete the comment
+
+            comment.findByIdAndDelete(request.params.id)
+            .then((result) => {
+
+                post.findById(result.post)
+                .then((result) => {
+
+                      var filterComments = result.comments.filter((value)=>{
+                         return value != request.params.id;
+                        });
+
+                    result.comments = filterComments;
+                    result.save();
+                console.log("comment deleted success")
+
+                })
+                
+                // you will also need to delete its reference from the posts
+            
+            });
+            
+        }
+
+
+
+    }).catch((err) => {
+        
+    });
+
+    return response.redirect("back");
+}
