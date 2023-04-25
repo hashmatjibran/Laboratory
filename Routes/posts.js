@@ -8,9 +8,11 @@ router.post('/createPost',
 passport.checkAuthentication //only logged in users can create posts
 ,controller.createPost);
 
-router.get('/',
-passport.isAuthenticatedUser //only logged in users can see posts
-,controller.showPosts);
+router.get('/',controller.showPosts);
+
+
+router.get('/delete_post', passport.checkAuthentication,controller.deletePost)
+
 
 
 router.get('/myposts',
