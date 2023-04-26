@@ -1,10 +1,15 @@
-<section id="friends">
-    <% for (u of users){%>
+<link rel="stylesheet" href="/Css/home.css">
+<div id="container-div">
+    <section id="posts">
+        <%-include('posts.ejs')-%>
+    </section>
 
-        
+    <section id="friends">
+        <% for (u of users){%>
+            <li>
+                <a href="/profile/<%=u.id%>"> <%=u.name%></a> 
+            </li>   
+        <%}%>
+    </section>
+</div>
 
-    <li>
-        <a href="/profile/<%=u.id%>"> <%=u.name%></a> 
-    </li>   
-<%}%>
-</section>

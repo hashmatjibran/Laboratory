@@ -3,37 +3,17 @@ const passport = require('passport');
  const router = express.Router();
 
 //  requiring user model
- const user = require('../Models/userSchema');
+
 
  router.get('/',passport.checkAuthentication,(request , response) => {
   return response.redirect('/home');
  });
 
 //  route for displaying the profile of users
- router.get('/profile/:id',passport.checkAuthentication,(request , response)=>{
-
-      user.findById(request.params.id)
-      .then((result) => {
-         
-            return response.render('profile',{users:result});
-
-      }).catch((err) => {
-         return response.redirect("back");
-      });
-
- });
+ router.use('/profile',require('./profile'));
 
 // route for displaying home page 
- router.get('/home',passport.checkAuthentication,(request , response)=>{
-   user.find()
-   .then((result) => {
-      
-      return response.render('home',{users:result});
-
-   }).catch((err) => {
-      return response.redirect("back");
-   });
-});
+ router.use('/home',require('./home'));
 
 // route for update form for a user profile
 router.post('/editProfile/:id',passport.checkAuthentication,(request , response)=>{

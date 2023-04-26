@@ -1,0 +1,16 @@
+#container-div {
+  display: flex;
+}
+
+#container-div #posts {
+  width: 70%;
+  background-color: midnightblue;
+  padding: 10px;
+}
+
+#container-div #friends {
+  width: 30%;
+  padding: 10px;
+  border-left: 2px solid white;
+  height: 100%;
+}

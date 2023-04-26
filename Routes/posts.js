@@ -8,14 +8,11 @@ router.post('/createPost',
 passport.checkAuthentication //only logged in users can create posts
 ,controller.createPost);
 
-router.get('/',controller.showPosts);
-
-
 router.get('/delete_post', passport.checkAuthentication,controller.deletePost)
 
 
 
 router.get('/myposts',
-passport.isAuthenticatedUser //only logged in users can see posts
+passport.isAuthenticatedUser //only logged in users can see his posts
 ,controller.myPosts);
 module.exports = router;

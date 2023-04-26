@@ -2,8 +2,9 @@ $heading-color:green;
 $heading-font:monospace;
 
 body{
+    height: 100%;
     color: white;
-    background-color: black;
+    background-color: whitesmoke;
     #header{
         display: flex;
         justify-content: space-between;

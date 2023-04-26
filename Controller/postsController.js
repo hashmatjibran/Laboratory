@@ -1,55 +1,58 @@
 const posts = require('../Models/postsSchema');
 const comments = require('../Models/commentSchema');
+
 module.exports.createPost = async (request , response)=>{
-    posts.create({
-        posts:request.body.posts,
-        user : request.user._id
-    })
-    .then((result) => {
+   try {
+        await posts.create({
+            posts:request.body.posts,
+            user : request.user._id
+        });
 
-        return response.redirect('/post');
-
-    }).catch((err) => {
-
-        console.log(`error found while creating a post ${err}`);
-
-    });
+            return response.redirect('back');
+   } 
+    catch (error) {
+        console.log(`error found while creating a post ${error}`);
+    }
 }
-module.exports.showPosts = async (request , response)=>{
+
+
+
+// module.exports.showPosts = async (request , response)=>{
   
-    // populating ALL the posts
-    posts.find().populate('user')
-    .populate({
-        path:'comments',
-        populate:{
-            path:'user'
-        }
+//     // populating ALL the posts
+//     posts.find().populate('user')
+//     .populate({
+//         path:'comments',
+//         populate:{
+//             path:'user'
+//         }
 
-    })
-    .then((result) => {
+//     })
+//     .then((result) => {
 
-        return response.render('posts',{'result':result});
-    }).catch((err) => {
-        console.log(`error found  : ${err}`);
-    });
-}
+//         return response.render('posts',{'result':result});
+//     }).catch((err) => {
+//         console.log(`error found  : ${err}`);
+//     });
+// }
 
 module.exports.myPosts = async (request , response)=>{
-    
     // populating only my posts
-    posts.find({user:request.user._id}).populate('user')
-    .populate({
-        path:'comments',
-        populate:{
-            path:'user'
-        }
+    try{
+        let result =  await posts.find({user:request.user._id}).populate('user')
+                            .populate({
+                                    path:'comments',
+                                    populate:{
+                                        path:'user'
+                                    }
 
-    })
-    .then((result) => {
-        return response.render('posts',{'result':result});
-    }).catch((err) => {
+                            });
+
+        return response.render('posts',{'result':result}); 
+
+    } catch(err) {
         console.log(`Internal server error  : ${err}`);
-    });
+    }
 }
 
 // function to delete a  post
@@ -57,46 +60,36 @@ module.exports.myPosts = async (request , response)=>{
 //  compare the user who has created the post and the user who wants to delete the post
 // if everything is alright then delete the post as well as delete the comments assciated with it
 
-module.exports.deletePost = (request , response)=>{
+module.exports.deletePost = async (request , response)=>{
   
-// check whether the post exsists or not 
+ try {
+    // check whether the post exsists or not 
 
- posts.findById(request.query.postId)
-
- .then((result) => {
-
+    let result = await posts.findById(request.query.postId);
     // and if exists ;
 
-    if ( result!=null && result != undefined && result !='') {
-
         // means post is present now it is time to check authorization
-        
         if (result.user == request.user.id) {
             // user is authorized now
 
             // delete the post 
-            posts.deleteOne({_id:request.query.postId})
-            .then((result) => {
-                if (result !="" && result !=null && result !=undefined) {
+         let deletePost = await posts.deleteOne({_id:request.query.postId});
 
                     // now delete every comment related to this post
                     // example of Model.deleteMany
                     // await Character.deleteMany({ name: /Stark/, age: { $gte: 18 } });
                      // returns {deletedCount: x} where x is the number of documents deleted
-                  comments.deleteMany({post:request.query.postId}).exec();
-                }
-            })
-            
-            
-            
+
+                  await comments.deleteMany({post:request.query.postId});
     }
-}
- }).catch((err) => {
+
+    return response.redirect("back");
+
+ }catch(err) {
 
     console.log(`internal server error:- ${err} `);
+    return;
 
- });
-// redirecting back to posts
-return response.redirect("back");
+ }
 
 }

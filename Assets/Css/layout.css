@@ -1,6 +1,7 @@
 body {
+  height: 100%;
   color: white;
-  background-color: black;
+  background-color: whitesmoke;
 }
 
 body #header {
