@@ -46,7 +46,7 @@ module.exports.signUp = async function (request , response) {
 
 module.exports.signIn = async function (request , response) {
     try {
-                return response.redirect('/profile');
+                return response.redirect('/home');
 
     } catch (error) {
         return response.end(`Error error:${error}`)

@@ -1,15 +1,43 @@
-
-<form action="/post/createPost" method="Post">
-
-    <label for="posts">Create a post</label>
-    <textarea name="posts" id="posts" cols="30" rows="3" placeholder="type here..." required>
-    
-    </textarea>
-    <input type="submit" value="Post">
-    
-</form>
-
+<!-- <%-include('_createPost')-%> -->
 <hr>
-<H2>
-    Recents Posts
-</H2>
+
+<%if(user.id == users.id){%>
+
+    <form action="/editProfile/<%=users.id%>" method="post" class="editProfile">
+        <div class="formChildren">
+            <label for="name" class="nameLabel">Name: </label>
+        <input class="nameInput" type="text" name="name" id="name" value="<%= users.name%>" required>
+        </div>
+        
+        <div class="formChildren">
+            <label for="email" class="emailLabel">Email: </label>
+        <input class="emailInput" type="email" name="email" id="email" value="<%= users.email%>" required >
+        </div>
+        
+        <div class="formChildren">
+        <label for="password" class="passwordLabel">Password:</label>
+        <input class="passwordInput" type="password" name="password" id="password"  minlength="6" value="<%= users.password%>" required>  
+        </div>
+        
+        <div class="formChildren">
+        <label for="confirmPassword" class="CpasswordLabel">Confirm Password:</label>
+        <input class="CpasswordInput" type="password" name="confirmPassword" id="confirmPassword" value="<%= users.password%>" minlength="6" required>
+        </div>
+        
+        <div class="formChildren">
+        <label for="age" class="ageLabel">D.O.B:</label>
+        <input class="ageInput" type="date" name="age" id="age" value="<%= users.age%>" required> 
+        </div>
+        
+
+        <input class="submitInput" type="submit" value="Update Profile">
+    </form>
+
+<%}else{%>
+<h2>
+   <%= users.name %>
+</h2>
+<h4>
+    <%=users.email%>
+</h4>
+<%}%>

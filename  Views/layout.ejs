@@ -12,7 +12,7 @@
     <h1 id="header">
         
         <% if(locals.user){ %>
-            <a class="cardHeading" href="/profile">Jibby Lab's</a> 
+            <a class="cardHeading" href="/home">Jibby Lab's</a> 
             <div>
                 <button id="MyPosts" class="MyPosts">
                     <a href="/post/myposts">
@@ -30,7 +30,7 @@
                      
                 </a>
             </button>
-            <%= user.name%>
+            <%=user.name%>
         </div>
         <%}else{%>
             <a class="cardHeading" href="/">Jibby Lab's</a> 

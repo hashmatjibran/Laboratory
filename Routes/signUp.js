@@ -10,7 +10,7 @@ router.get('/' ,(request ,response)=>{
     // if the user is authenticated don't let the user to redirect to sign Up page
     if(request.isAuthenticated())
     {
-        return response.redirect('/profile');
+        return response.redirect('/home');
     }
 
     return response.render('signUp')
