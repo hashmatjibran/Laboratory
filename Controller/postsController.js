@@ -80,12 +80,10 @@ module.exports.deletePost = (request , response)=>{
                 if (result !="" && result !=null && result !=undefined) {
 
                     // now delete every comment related to this post
-
-                  comments.deleteMany({post:request.query.postId})
-                  .then((result)=>{
-                    console.log(result);
-                  })  
-
+                    // example of Model.deleteMany
+                    // await Character.deleteMany({ name: /Stark/, age: { $gte: 18 } });
+                     // returns {deletedCount: x} where x is the number of documents deleted
+                  comments.deleteMany({post:request.query.postId}).exec();
                 }
             })
             

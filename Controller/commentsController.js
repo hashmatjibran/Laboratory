@@ -55,8 +55,12 @@ module.exports.deleteComment = (request , response)=>{
             comment.findByIdAndDelete(request.params.id)
             .then((result) => {
 
-                post.findById(result.post)
+               /*  old school way i.e getting the comments, filtering them and then ressaving them inside the db.
+
+               post.findById(result.post)
                 .then((result) => {
+
+                   
 
                       var filterComments = result.comments.filter((value)=>{
                          return value != request.params.id;
@@ -64,10 +68,16 @@ module.exports.deleteComment = (request , response)=>{
 
                     result.comments = filterComments;
                     result.save();
-                console.log("comment deleted success")
 
-                })
+                })*/
+
+                 // easy way to do the same task provided by the inbuilt function  of the mongoose
+
+                //  Model.findByIdAndUpdate(id, update, options)  // returns Query
                 
+                 post.findByIdAndUpdate(result.post,{$pull:{comments:request.params.id}}).exec();
+                 
+
                 // you will also need to delete its reference from the posts
             
             });
@@ -77,7 +87,7 @@ module.exports.deleteComment = (request , response)=>{
 
 
     }).catch((err) => {
-        
+        console.log(`Internal server error :- ${err}`);
     });
 
     return response.redirect("back");
