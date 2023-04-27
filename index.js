@@ -63,6 +63,12 @@ app.use(SassMiddleware({
 
 }));
 
+// using connect-flash 
+const flash = require('connect-flash');
+
+// using flash middleWare to set the flash messages into the response object
+const flashMiddleware = require('./Config/flashMiddleware');
+
 // using passport and cookie session
 app.use(session({
     name:'Laboratory', //name of the session
@@ -88,6 +94,10 @@ app.use(passport.initialize()); //initialize the passport
 app.use(passport.session()); //this line of code authenticates the session
 
 app.use(passport.isAuthenticatedUser); //check whether the user is authenticated
+
+app.use(flash());
+app.use(flashMiddleware.setFlash);
+
 
 // using Routes i.e redirecting to the routes Directory and search in there the file provided
 app.use('/',require('./Routes/web'));

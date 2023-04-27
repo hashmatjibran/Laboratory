@@ -8,7 +8,12 @@
     <title>jibby Lab's</title>
     <%-style%>
 </head>
+
 <body>
+
+ 
+
+
     <h1 id="header">
         
         <% if(locals.user){ %>
@@ -52,7 +57,9 @@
             
             <%}%>
     </h1>
-
+    <% if(flash.success && flash.success.length > 0){%>
+        <h5><%=flash.success%></h5> 
+         <%}%>
     <%-body%>
     
     <%-script%>
