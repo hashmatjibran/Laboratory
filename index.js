@@ -73,8 +73,8 @@ const flashMiddleware = require('./Config/flashMiddleware');
 app.use(session({
     name:'Laboratory', //name of the session
     secret:'jibby', //the secret key for the session it can also be crypto
-    saveUninitialized:false, //dont save this session in db for a not signed in user
-    resave:false,   //don't save again and again the same session
+    saveUninitialized:true, //dont save this session in db for a not signed in user
+    resave:true,   //don't save again and again the same session
     cookie:{    
         maxAge:(1000 * 60 *100) //the age for the cookie to expire it is in milli secs
     },
@@ -89,14 +89,18 @@ app.use(session({
     )
 }));
 
+app.use(flash());
+app.use(flashMiddleware.setFlash);
+
 app.use(passport.initialize()); //initialize the passport
 
 app.use(passport.session()); //this line of code authenticates the session
 
+
+
 app.use(passport.isAuthenticatedUser); //check whether the user is authenticated
 
-app.use(flash());
-app.use(flashMiddleware.setFlash);
+
 
 
 // using Routes i.e redirecting to the routes Directory and search in there the file provided

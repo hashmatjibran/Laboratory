@@ -9,4 +9,5 @@ const controller = require('../Controller/userController');
 
 router.get('/',controller.signOut);
 
+
 module.exports = router;

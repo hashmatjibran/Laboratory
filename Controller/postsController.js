@@ -7,11 +7,11 @@ module.exports.createPost = async (request , response)=>{
             posts:request.body.posts,
             user : request.user._id
         });
-
+            request.flash('info','Post Created Successfully');
             return response.redirect('back');
    } 
     catch (error) {
-        console.log(`error found while creating a post ${error}`);
+        request.flash('error',"Post Could not be created at the Moment Please try After Sometime");
     }
 }
 
@@ -48,10 +48,17 @@ module.exports.myPosts = async (request , response)=>{
 
                             });
 
+        if(result.length > 0)
+        {
+            request.flash('info',`You have posted ${result.length} posts`);
+        }
+        else{
+            request.flash('info',`You have 0 posts`);
+        }
         return response.render('posts',{'result':result}); 
 
     } catch(err) {
-        console.log(`Internal server error  : ${err}`);
+        request.flash('error',`Internal server error  : ${err}`);
     }
 }
 
@@ -81,13 +88,14 @@ module.exports.deletePost = async (request , response)=>{
                      // returns {deletedCount: x} where x is the number of documents deleted
 
                   await comments.deleteMany({post:request.query.postId});
+                  request.flash('warning',"Post Deleted Successfully");
     }
 
     return response.redirect("back");
 
  }catch(err) {
 
-    console.log(`internal server error:- ${err} `);
+    request.flash('error',`Internal Server Error ${err}`);
     return;
 
  }

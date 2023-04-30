@@ -11,37 +11,31 @@ const User = require('../Models/userSchema');
 passport.use('local',new LocalStrategy(
     
     {
-        usernameField:'email'
+        usernameField:'email',
+        passReqToCallback :true
     },
 
-   async function (email,password,done) { 
+   async function (request , email,password,done) { 
 
         // find a user and try to establish the identity
-
        await User.findOne({email:email})
         .then((result) => {
-
             // trying to match password
             if(result == null || result==undefined  || result.password != password  )
             {
-                console.log(`Incorrect Email/Password Entered!`);
+                request.flash('error',"Incorrect Email/Password Entered!");
                 return done(null,false);
             }
             else{
                 return done(null,result);
             }
             
-            
         }).catch((err) => {
-            console.log(`Error in finding the user with email :${email} Error: ${err}`);
+            request.flash('error',"Internal Server Error! Please Try again later");
             return done(err);
         });
 
  }
-
-
-
-
 ));
 
 // serializing means creating a cookie for a signed in user 

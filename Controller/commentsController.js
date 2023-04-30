@@ -30,6 +30,7 @@ module.exports.createComment = async function(request , response)
                     getPost.comments.push(createComment);
                     getPost.save();
 
+                request.flash('info',"Commented successfully");
                     return response.redirect('back');
                 
                 
@@ -69,7 +70,9 @@ module.exports.deleteComment = async (request , response)=>{
                     // easy way to do the same task provided by the inbuilt function  of the mongoose
 
                     //  Model.findByIdAndUpdate(id, update, options)  // returns Query
-                    post.findByIdAndUpdate(deleteComment.post,{$pull:{comments:request.params.id}}).exec();  
+                   await post.findByIdAndUpdate(deleteComment.post,{$pull:{comments:request.params.id}}).exec();  
+
+                   request.flash('warning','Comment Deleted Successfully');
             }
 
 

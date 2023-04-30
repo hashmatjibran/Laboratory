@@ -42,25 +42,28 @@ module.exports.signUp = async function (request , response) {
 module.exports.signIn = async function (request , response) {
     try {
 
-        request.flash('success',"Logged in Successfully")
-                return response.redirect('/home');
+        request.flash('success',"Logged in Successfully");
+        return response.redirect('/home');
 
-    } catch (error) {
-        request.flash('error',"Log in failed!")
+    } catch(error){
+        request.flash('error',"Log in failed!");
         return response.redirect('back');
     }
     
 }
 
-module.exports.signOut = function (request , response) {
-   
-
+module.exports.signOut = async function (request , response) {
+     
     request.logout((err)=>{
         if(err)
         {
-            return console.log(err);
+            return console.log(`Error in logout function ${err}`);
         }
+       
     });
-    request.flash('success','Logged out successfully');
-   return  response.redirect('/signIn');
-  }
+
+    
+    request.flash('success',"you have Logged out");
+    return  response.redirect('/signIn/');
+
+}
