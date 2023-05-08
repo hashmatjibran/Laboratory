@@ -2,18 +2,21 @@
 
 <H1>Posts</H1>
 <div id="posts">
-<% for(post of result){%>
 
-<li>
+
+<li id="listOfPosts">
+    <% for(post of result){%>
     <%-include('_posts.ejs')-%>
     
      <% for(comment of post.comments){%>
       
       <%-include('_comments.ejs')-%>
       
-      <% } %>
+      <% } }%>
 </li>
 
 
-<%}%>
+
 </div>
+
+<script src="Js/posts.js"></script>

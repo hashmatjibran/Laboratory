@@ -1,12 +1,24 @@
 const posts = require('../Models/postsSchema');
 const comments = require('../Models/commentSchema');
+const User = require('../Models/userSchema');
 
 module.exports.createPost = async (request , response)=>{
    try {
-        await posts.create({
+      let post =  await posts.create({
             posts:request.body.posts,
             user : request.user._id
         });
+        console.log(post.user);
+    let PostBy = await User.findById(post.user);
+        console.log(PostBy.name);
+        if(request.xhr){
+            return response.status(200).json({
+                data:post,
+                message:"post created successfully",
+                postedBy : `${PostBy.name}`
+            });
+        }
+
             request.flash('info','Post Created Successfully');
             return response.redirect('back');
    } 
@@ -74,7 +86,6 @@ module.exports.deletePost = async (request , response)=>{
 
     let result = await posts.findById(request.query.postId);
     // and if exists ;
-
         // means post is present now it is time to check authorization
         if (result.user == request.user.id) {
             // user is authorized now

@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require('passport');
+const User = require('../Models/userSchema');
  const router = express.Router();
 
 //  requiring user model
@@ -16,16 +17,18 @@ const passport = require('passport');
  router.use('/home',require('./home'));
 
 // route for update form for a user profile
-router.post('/editProfile/:id',passport.checkAuthentication,(request , response)=>{
+router.post('/editProfile/:id',passport.checkAuthentication,async (request , response)=>{
 
+   console.log(request.params.id);
    if(request.body.password == request.body.confirmPassword)
    {
-      user.findByIdAndUpdate(request.params.id,{
+      console.log("passed")
+     await User.findByIdAndUpdate(request.params.id,{
          $set:{
-            email:request.body.email,
-            name:request.body.name,
-            password:request.body.password,
-            age:request.body.age
+            email: request.body.email,
+            name: request.body.name,
+            password: request.body.password,
+            age: request.body.age
          }
       })
       .then((result) => {
