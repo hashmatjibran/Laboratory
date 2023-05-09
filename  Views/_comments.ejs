@@ -1,13 +1,15 @@
-<li>
+
     <%=comment.comment%>
     <br>
     commented by :- <%= comment.user.name%> 
     
     <% if(locals.user){%>
       <% if(comment.user.id === locals.user.id){%>
-    <a href="/comment/deleteComment/<%= comment.id%>"> <i class="fa-solid fa-trash"></i> </a>
+    <a id="comment_no_" class="delete_comment" href="/comment/deleteComment/<%= comment.id%>">
+       <i class="fa-solid fa-trash"></i> 
+    </a>
     <% } } %> 
 
-  </li>
+  
 
   

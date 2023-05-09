@@ -2,6 +2,7 @@ const comment = require('../Models/commentSchema');
 
 const post = require('../Models/postsSchema');
 
+const User = require('../Models/userSchema')
 
 // creating and storing comment id in posts here
 module.exports.createComment = async function(request , response)
@@ -30,7 +31,21 @@ module.exports.createComment = async function(request , response)
                     getPost.comments.push(createComment);
                     getPost.save();
 
-                request.flash('info',"Commented successfully");
+                    // fetch the user wh has commented!
+                    let commentedUser = await User.findById(createComment.user);
+                
+
+                if(request.xhr)
+                {
+                    return response.status(200).json({
+                        data:createComment,
+                        user:commentedUser.name,
+                        message:"comment created successfully"
+                    });
+                }
+                // flash message here!
+                    request.flash('info',"Commented successfully");
+
                     return response.redirect('back');
                 
                 
@@ -72,6 +87,13 @@ module.exports.deleteComment = async (request , response)=>{
                     //  Model.findByIdAndUpdate(id, update, options)  // returns Query
                    await post.findByIdAndUpdate(deleteComment.post,{$pull:{comments:request.params.id}}).exec();  
 
+                   if(request.xhr)
+                   {
+                    return response.status(200).json({
+                        id:request.params.id,
+                        message:"comment deleted successfully"
+                    });
+                   }
                    request.flash('warning','Comment Deleted Successfully');
             }
 

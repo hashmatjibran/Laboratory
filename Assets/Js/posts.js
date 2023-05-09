@@ -39,9 +39,9 @@
 
             <br>
 
-            <form action="/comment/create" method="post">
-            <input type="text" name="comment" class="comment">  
-            <input type="hidden" name="post_id" value="${ post.data.id}">
+            <form id="commentForm" action="/comment/create" method="post">
+            <input  type="text" name="comment" class="comment">  
+            <input type="hidden" name="post_id" value="${ post.data._id}">
             <input type="submit" value="Comment">
             </form>
 
