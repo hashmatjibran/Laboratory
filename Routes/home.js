@@ -12,7 +12,9 @@ router.get('/',passport.checkAuthentication,async (request , response)=>{
 
     let users = await user.find();
     
-    let result = await post.find().populate('user')
+    let result = await post.find()
+    .sort('-createdAt')
+    .populate('user')
      .populate({
          path:'comments',
          populate:{

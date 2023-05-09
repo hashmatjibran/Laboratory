@@ -1,8 +1,10 @@
-<p>
+
+<li>
+  <p>
     <%= post.posts%>
       <% if(locals.user){%>
         <% if(post.user.id === locals.user.id){%>
-        <a href="/post/delete_post/?postId=<%= post.id%>"> <i class="fa-solid fa-trash"></i></a> 
+        <a class="delete_Post_Link" href="/post/delete_post/?postId=<%= post.id%>"> <i class="fa-solid fa-trash"></i></a> 
         <% } %>
         <br>
         <form action="/comment/create" method="post">
@@ -16,3 +18,4 @@
     Posted By:-  <%= post.user.name%>
   </small>  
   </p>
+</li>

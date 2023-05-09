@@ -11,7 +11,12 @@
         data: newPostForm.serialize(),
         success: function (response) {
             // passing the data to display
-            newPostDom(response);
+            let newPost = newPostDom(response);
+
+            // prepending a new post to the list of posts
+            $('#listOfPosts').prepend(newPost);
+            deletePost($(' .delete_Post_Link', newPost));
+
         },
         error: function (error) {
             console.log(error);
@@ -22,11 +27,15 @@
    });
 
    let newPostDom = function (post) {
-       let newPost = `
-        <p>
+    $('#textArea').val("");
+       return  `
+       <li id="post_${ post.data._id}">
+        <p >
             ${post.data.posts}
             
-            <a href="/post/delete_post/?postId=${ post.data._id}"> <i class="fa-solid fa-trash"></i></a> 
+            <a id="delete_Post_Link_${ post.data._id}" class="delete_Post_Link" href="/post/delete_post/?postId=${ post.data._id}">
+             <i class="fa-solid fa-trash"></i>
+            </a> 
 
             <br>
 
@@ -40,12 +49,32 @@
                 Posted By:-  ${ post.postedBy }
             </small>  
         </p>
+        </li>
         `;
-    $('#textArea').val("");
-       return $('#listOfPosts').prepend(newPost);
+    
         
    }
-
-
+   
+ 
+     
+  
+   
+function deletePost(deleteLink) {
+    $("#"+deleteLink.prop('id')).click(function (e) { 
+        e.preventDefault();
+        $.ajax({
+            type: "get",
+            url: deleteLink.prop('href'),
+            success: function (response) {
+                console.log(response);
+                $(`#post_${response.id}`).remove();
+            },
+            error: function (error) { 
+                console.log(error.responseText);
+             }
+        });
+    });
+    
+}
 
 }

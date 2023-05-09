@@ -99,6 +99,15 @@ module.exports.deletePost = async (request , response)=>{
                      // returns {deletedCount: x} where x is the number of documents deleted
 
                   await comments.deleteMany({post:request.query.postId});
+
+                  if(request.xhr)
+                  {
+                    return response.status(200).json({
+                        id:request.query.postId
+                    });
+                  }
+
+
                   request.flash('warning',"Post Deleted Successfully");
     }
 

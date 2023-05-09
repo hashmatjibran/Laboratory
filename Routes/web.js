@@ -22,7 +22,6 @@ router.post('/editProfile/:id',passport.checkAuthentication,async (request , res
    console.log(request.params.id);
    if(request.body.password == request.body.confirmPassword)
    {
-      console.log("passed")
      await User.findByIdAndUpdate(request.params.id,{
          $set:{
             email: request.body.email,
@@ -31,9 +30,8 @@ router.post('/editProfile/:id',passport.checkAuthentication,async (request , res
             age: request.body.age
          }
       })
-      .then((result) => {
          return response.redirect('/home');
-      })
+     
    }
    else{
       return response.redirect("back");
