@@ -1,0 +1,147 @@
+#editForm_div #profile_pic {
+  position: relative;
+  left: 50%;
+}
+
+#editForm_div form #profile_pic_input {
+  position: absolute;
+  top: 27%;
+  left: 50%;
+}
+
+#editForm_div form .nameLabel {
+  position: absolute;
+  color: green;
+  top: 34%;
+  left: 40%;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+}
+
+#editForm_div form #name {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  color: rgba(0, 0, 0, 0.664);
+  background-color: lightgray;
+  border-radius: 30px;
+  border: none;
+  padding-left: 1%;
+}
+
+#editForm_div form .emailLabel {
+  position: absolute;
+  color: green;
+  top: 40%;
+  left: 40%;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+}
+
+#editForm_div form #email {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  color: rgba(0, 0, 0, 0.664);
+  background-color: lightgray;
+  border-radius: 30px;
+  border: none;
+  padding-left: 1%;
+}
+
+#editForm_div form .passwordLabel {
+  position: absolute;
+  color: green;
+  top: 46%;
+  left: 35.5%;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+}
+
+#editForm_div form #password {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  color: rgba(0, 0, 0, 0.664);
+  background-color: lightgray;
+  border-radius: 30px;
+  border: none;
+  padding-left: 1%;
+}
+
+#editForm_div form .CpasswordLabel {
+  position: absolute;
+  color: green;
+  top: 52%;
+  left: 26%;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+}
+
+#editForm_div form #confirmPassword {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  color: rgba(0, 0, 0, 0.664);
+  background-color: lightgray;
+  border-radius: 30px;
+  border: none;
+  padding-left: 1%;
+}
+
+#editForm_div form .ageLabel {
+  position: absolute;
+  color: green;
+  top: 58%;
+  left: 40%;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+}
+
+#editForm_div form #age {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  color: rgba(0, 0, 0, 0.664);
+  background-color: lightgray;
+  border-radius: 30px;
+  border: none;
+  padding-left: 1%;
+}
+
+#editForm_div form .submitInput {
+  position: absolute;
+  top: 66%;
+  left: 50%;
+  background-color: green;
+  font-size: larger;
+  border-radius: 30px;
+  border: none;
+  color: rgba(0, 0, 0, 0.664);
+}
+
+#editForm_div form .submitInput:hover {
+  transform: scale(1.2);
+}
+
+#editForm_div #friends_username {
+  text-align: center;
+  color: skyblue;
+  font-family: sans-serif;
+}
+
+#editForm_div #friends_email {
+  text-align: center;
+  color: skyblue;
+  font-family: sans-serif;
+}

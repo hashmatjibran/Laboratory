@@ -8,11 +8,12 @@
     <!-- links for noty.js to display notifications -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" integrity="sha512-0p3K0H3S6Q4bEWZ/WmC94Tgit2ular2/n0ESdfEX8l172YyQj8re1Wu9s/HT9T/T2osUw5Gx/6pAZNk3UKbESw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    
     <!-- link for jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="/Css/layout.css">
+    <link rel="stylesheet" href="/Css/profile.css">
     <title>jibby Lab's</title>
     <%-style%>
 </head>
@@ -31,15 +32,30 @@
             </button>
         </div>
 
-
-            <div>
+        <div id="profile_div">
+            <img src="<%=user.avatar%>" alt="<%=user.name%>" >
+           
+            <button class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-square-caret-down"></i>
+            </button>
+            <div class="dropdown">
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a href="/signOut" id="logOut" class="logOut">
+                    Logout <i class="fa-solid fa-person-walking-arrow-right"></i> 
+                 </a></a></li>
+                  <li><a class="dropdown-item" href="/profile/<%=user.id%>">Edit Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
+        </div>
+            <!-- <div>
                 <button id="logOut" class="logOut">
                     <a href="/signOut">
                         Logout <i class="fa-solid fa-person-walking-arrow-right"></i> 
                      </a>
             </button>
             <%=user.name%>
-        </div>
+        </div> -->
         <%}else{%>
             <a class="cardHeading" href="/">Jibby Lab's</a> 
             <div>
@@ -118,5 +134,6 @@
                 <!-- the below script renders data of different pages having script tag -->
     <%-script%>
     <script src="https://kit.fontawesome.com/7d7d520dab.js" crossorigin="anonymous"></script>
+    <script src="/Js/layout.js" defer></script>
 </body>
 </html>

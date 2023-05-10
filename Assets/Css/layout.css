@@ -25,6 +25,36 @@ body #header div {
   width: 20%;
 }
 
+body #header div .dropdown {
+  z-index: 1;
+  position: absolute;
+  top: 6%;
+  display: block;
+  height: fit-content;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+body #header div .dropdown ul {
+  list-style: none;
+}
+
+body #header div .dropdown ul li {
+  border-bottom: 1px solid whitesmoke;
+}
+
+body #header div .dropdown ul li a {
+  display: inline-block;
+  color: whitesmoke;
+  text-decoration: none;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+body #header div .dropdown ul li:hover > a {
+  color: orange;
+  transform: scale(1.2);
+}
+
 body #header div button:hover {
   transform: scale(1.2);
   background-color: skyblue;
@@ -43,4 +73,14 @@ body #header div button a {
   color: whitesmoke;
   text-decoration: none;
   width: 100%;
+}
+
+body #header #profile_div {
+  justify-content: normal;
+}
+
+body #header #profile_div img {
+  z-index: 2;
+  width: 50px;
+  border-radius: 30px;
 }

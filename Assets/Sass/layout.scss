@@ -16,7 +16,7 @@ body{
             color: whitesmoke;
                         text-decoration: none;
         }
-
+        
         div{
             display: flex;
             align-items: center;
@@ -24,6 +24,33 @@ body{
             height: 100%;
             width: 20%;
 
+            .dropdown {
+                z-index: 1;
+                position: absolute;
+                top: 6%;
+                display: block;
+                height: fit-content;
+                background-color: rgba(0, 0, 0, 0.5);
+                ul{
+                    list-style: none;
+                    li{
+                        border-bottom: 1px solid whitesmoke;
+                       a{
+                    display: inline-block;
+                    color: whitesmoke;
+                    text-decoration: none;
+                    width: 100%;
+                    font-size: 1.2rem;
+                } 
+                
+                    }
+                    li:hover > a{
+                        color: orange;
+                        transform: scale(1.2);
+                    } 
+                }
+                
+            }
            
             button:hover{
                 transform: scale(1.2);
@@ -46,6 +73,15 @@ body{
                     
                 }
            
+        }
+        #profile_div{
+            justify-content: normal;
+            img{
+                z-index: 2;
+                width: 50px;
+                border-radius: 30px;
+            }
+            
         }
     }
 }
