@@ -1,9 +1,9 @@
 
 <hr>
-
+<img src="<%=users.avatar%>" alt="<%=users.name%>" width="100" >
 <%if(user.id == users.id){%>
 
-    <form action="/editProfile/<%=users.id%>" method="post" class="editProfile">
+    <form action="/editProfile/<%=users.id%>" method="post" class="editProfile" enctype="multipart/form-data">
         <div class="formChildren">
             <label for="name" class="nameLabel">Name: </label>
         <input class="nameInput" type="text" name="name" id="name" value="<%= users.name%>" required>
@@ -28,7 +28,9 @@
         <label for="age" class="ageLabel">D.O.B:</label>
         <input class="ageInput" type="date" name="age" id="age" value="<%= users.age%>" required> 
         </div>
-        
+
+            <input type="file" name="avatar" />
+          
 
         <input class="submitInput" type="submit" value="Update Profile">
     </form>

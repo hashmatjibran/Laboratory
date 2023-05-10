@@ -42,6 +42,10 @@ app.use(express.static('./Assets'));
 
 // using layouts
 app.use(expressLayouts);
+
+// using the file path for showing the files in the upload folder
+app.use('/uploads',express.static(__dirname+'/uploads'));
+
 // extracting styles and sripts 
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
