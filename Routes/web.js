@@ -1,7 +1,12 @@
 const express = require('express');
 const passport = require('passport');
 const User = require('../Models/userSchema');
- const router = express.Router();
+
+const path = require('path');
+const fs = require('fs');
+
+const router = express.Router();
+ 
 
 //  requiring user model
 
@@ -43,6 +48,22 @@ router.post('/editProfile/:id',passport.checkAuthentication,async (request , res
          user.password = request.body.password;
          user.age = request.body.age;
          if(request.file){
+
+            if(user.avatar){
+               console.log(user.avatar);
+                  // check if file is present in the location
+                  if(fs.existsSync(path.join(__dirname,'..',user.avatar)))
+                  {
+                        // if file is present , delete the file 
+                        fs.unlinkSync(path.join(__dirname,'..',user.avatar), function(err) {
+                           if (err) {
+                              return console.error(err);
+                           }
+                        });
+                        
+                     }
+               }
+
             user.avatar = User.avatarPath+'/'+request.file.filename;
             
          }user.save();
