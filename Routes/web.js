@@ -95,7 +95,7 @@ router.use('/post',require('./posts'));
 
 router.use('/comment',require('./comments'));
 
-
+router.use('/api',require('./api/index'));
 
 
  module.exports = router;
