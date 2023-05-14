@@ -19,6 +19,8 @@ const passport = require('passport');
 //using passport-local-Strategy
 const passportLocal = require('./Config/passport-local');
 
+// using passport-jwt-stategy
+const passportJWT = require('./Config/passport-jwt-strategy');
 
 // requiring BodyParser
 const bodyParser = require('body-parser');
