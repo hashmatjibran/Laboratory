@@ -32,12 +32,12 @@ module.exports.index = async function (request , response) {
 
 module.exports.delete = async function (request , response) { 
 
-    console.log(request.params.id);
+    
     try {
 
         let findPost = await post.findById(request.params.id);
 
-    if(findPost)
+    if(findPost.user == request.user.id)
     {
         let deletePost = await post.deleteOne({_id:request.params.id});
         await comments.deleteMany({post:request.params.id});
@@ -46,7 +46,7 @@ module.exports.delete = async function (request , response) {
         });
     }else{
         return response.status(404).json({
-            message: "post not found "
+            message: "You cannot delete this post "
         });
     }
 

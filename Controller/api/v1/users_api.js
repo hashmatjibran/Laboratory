@@ -8,7 +8,7 @@ module.exports.createToken = async function (request , response) {
 try {
 
     let user = await User.findOne({email:request.body.email});
-    console.log(user)
+    
     if(!user || (user.password !=request.body.password))
     {
         return response.status(403).json({
@@ -19,7 +19,7 @@ try {
         return response.status(200).json({
             message: 'sign in successfull',
             data: {
-                token: jsonwebtoken.sign({id:user.id},'jibby', {issuer:'www.jibzlaboratory.com'},{expiresIn:10000})
+                token: jsonwebtoken.sign({id:user.id},'jibby', {issuer:'www.jibzlaboratory.com'},{expiresIn:1000000})
             }
         });
     }
